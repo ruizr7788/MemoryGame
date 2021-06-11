@@ -1,5 +1,7 @@
 :root {
-  --transition-BG-color: all 0.2s ease;
+  --transition-BG-color: all 0.3s ease;
+  --main-color: #ecf0f1;
+  --secondary-color: #34495e;
 }
 
 * {
@@ -8,59 +10,74 @@
 
 html {
   font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background-color: black;
+  background: linear-gradient(90deg, #e67e22, #f1c40f);
 }
 
-#score_container h1 {
-  color: #fff;
-  padding: 1em;
+#gameStats {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #2c3e50;
+  padding: 2em 1em;
+  margin: 0;
+  width: 700px;
+  margin: auto;
 }
+#highscore_container h1 {
+  color: var(--main-color);
+}
+#score_container h1 {
+  color: var(--main-color);
+}
+
 #round_container h1 {
-  color: #fff;
-  padding: 1em;
-  position: absolute;
-  right: 0;
-  top: 0;
+  color: var(--main-color);
+}
+
+#game_container {
+  border-top: 1px solid#bdc3c7;
+  background-color: #2c3e50;
+  max-width: fit-content;
+  text-align: center;
+  margin: auto;
+  padding: 2em;
 }
 #countdown_container h1 {
-  color: #fff;
-  position: absolute;
-  left: 50%;
-  top: 1em;
-  font-size: 100px;
-  transform: translateX(-50%);
+  color: var(--main-color);
 }
-
 #game_buttons {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 2em;
-  column-gap: 2em;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 5em 5em;
+  transform: rotate(47deg);
 }
 
 #game_buttons .box {
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: #fff; */
+  color: var(--secondary-color);
+  font-size: x-large;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 50%;
-  margin-right: 1em;
-  width: 120px;
-  height: 120px;
+
+  width: 150px;
+  height: 150px;
 }
 #game_controls ul {
-  position: absolute;
-  top: 75%;
-  left: 50%;
-  transform: translate(-60%, -75%);
   list-style: none;
   display: flex;
-  width: 300px;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 0 0 1em 0;
 }
 #start {
   font-size: 30px;
@@ -68,12 +85,12 @@ body {
   padding: 12px 18px;
   cursor: pointer;
   max-width: fit-content;
+  border: 1px solid #fff;
   transition: var(--transition-BG-color);
 }
 #start:hover {
   background-color: black;
   color: #fff;
-  border: 1px solid #fff;
   transition: var(--transition-BG-color);
 }
 #reset {
@@ -82,17 +99,18 @@ body {
   padding: 12px 18px;
   cursor: pointer;
   max-width: fit-content;
+  border: 1px solid #fff;
   transition: var(--transition-BG-color);
 }
 #reset:hover {
   background-color: black;
   color: #fff;
-  border: 1px solid #fff;
+
   transition: var(--transition-BG-color);
 }
 #game_buttons .box-0 {
   background-color: yellow;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: var(--transition-BG-color);
 }
 /* #game_buttons .box-1:hover {
@@ -100,7 +118,7 @@ body {
 } */
 #game_buttons .box-1 {
   background-color: red;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: var(--transition-BG-color);
 }
 /* #game_buttons .box-2:hover {
@@ -108,7 +126,7 @@ body {
 } */
 #game_buttons .box-2 {
   background-color: blue;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: var(--transition-BG-color);
 }
 /* #game_buttons .box-3:hover {
@@ -116,7 +134,7 @@ body {
 } */
 #game_buttons .box-3 {
   background-color: green;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: var(--transition-BG-color);
 }
 /* #game_buttons .box-4:hover {
@@ -124,10 +142,8 @@ body {
 } */
 
 #credit {
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
+  max-width: fit-content;
+  margin: auto;
 }
 #credit h6 {
   color: #fff;

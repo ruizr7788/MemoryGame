@@ -2,6 +2,7 @@
 
 // selectors
 const roundEl = document.getElementById("round");
+const highscoreEl = document.getElementById("highscore");
 const scoreEl = document.getElementById("score");
 const allBoxes = document.querySelectorAll(".box");
 const box1 = document.querySelector(".box-0");
@@ -13,18 +14,16 @@ const resetBTN = document.getElementById("reset");
 const bodyEl = document.getElementById("body");
 const countdownEl = document.getElementById("countdown");
 
-// console.log(round);
-// console.log(score);
-// console.log(allBoxes);
-// console.log(box1);
-// console.log(box2);
-// console.log(box3);
-// console.log(box4);
+// dynamic variables --------------------------------
+
+const dimOpacity = "0.7";
 
 // game state ---------------------------------------
 
 let gameInPlay = false;
+// set to round 1 after testing
 let round = 1;
+let highscore = 0;
 let score = 0;
 // reset user sequence after each round
 let userSequence = [];
@@ -32,6 +31,7 @@ let computerSequenceGlobal = [];
 
 setRoundText();
 setScore();
+setHighscore();
 
 // functions ----------------------------------------
 // sequencing -------------------------
@@ -40,52 +40,57 @@ function userSequenceChecker(curRound, computerSequence) {
     if (JSON.stringify(userSequence) == JSON.stringify(computerSequence)) {
       switch (curRound) {
         case 1:
-          round++;
           score += 20;
+          round++;
           round2();
           break;
         case 2:
           round++;
-          score += 30;
+          score += 40;
           round3();
           break;
         case 3:
           round++;
-          score += 40;
+          score += 80;
           round4();
           break;
         case 4:
           round++;
-          score += 50;
+          score += 160;
+
           round5();
           break;
         case 5:
           round++;
-          score += 55;
+          score += 320;
           round6();
           break;
         case 6:
           round++;
-          score += 55;
+          score += 640;
           round7();
           break;
         case 7:
           round++;
-          score += 60;
+          score += 1280;
           round8();
           break;
         case 8:
           round++;
-          score += 60;
+          score += 2560;
           round9();
           break;
         case 9:
           round++;
-          score += 100;
+          score += 5020;
           round10();
           break;
+        case 10:
+          score += 10040;
+          winDisplay();
       }
     } else {
+      setHighscore();
       losingDisplay();
       gameInPlay = false;
     }
@@ -101,7 +106,7 @@ function userSequenceRecorder() {
       currBox == "box-3" && userSequence.push(3);
       box.style.opacity = "1";
       setTimeout(() => {
-        box.style.opacity = ".5";
+        box.style.opacity = dimOpacity;
       }, 230);
     });
   });
@@ -114,13 +119,23 @@ function setRoundText() {
 function setScore() {
   scoreEl.textContent = score;
 }
-function losingDisplay() {
-  bodyEl.style.backgroundColor = "red";
-  countdownEl.textContent = "You Lose";
+function setHighscore() {
+  if (score > highscore) {
+    highscore = score;
+  }
+  highscoreEl.textContent = highscore;
+}
+function winDisplay() {
+  bodyEl.style.background = "linear-gradient(90deg, #27ae60, #2ecc71)";
+  countdownEl.textContent = "You Win!";
   allBoxes.forEach((box) => {
     box.style.backgroundColor = "#fff";
     box.style.opacity = 1;
   });
+}
+function losingDisplay() {
+  bodyEl.style.background = "linear-gradient(90deg, #c0392b, #e74c3c)";
+  countdownEl.textContent = "You Lose";
 }
 function resetGame() {
   gameInPlay = true;
@@ -128,20 +143,20 @@ function resetGame() {
   userSequence = [];
   computerSequenceGlobal = [];
 
-  scoreEl.textContent = "0";
-  score = 0;
-
   roundEl.textContent = "1";
   round = 1;
 
-  bodyEl.style.backgroundColor = "black";
+  scoreEl.textContent = "0";
+  score = 0;
+
+  bodyEl.style.background = "linear-gradient(90deg, #e67e22, #f1c40f)";
   countdownEl.textContent = "?";
   box1.style.backgroundColor = "yellow";
   box2.style.backgroundColor = "red";
   box3.style.backgroundColor = "blue";
   box4.style.backgroundColor = "green";
   allBoxes.forEach((box) => {
-    box.style.opacity = 0.5;
+    box.style.opacity = dimOpacity;
   });
 }
 // lighting up boxes -------------------------
@@ -257,7 +272,10 @@ function round1() {
       computerSequence,
       function (arrayElement) {
         allBoxes[arrayElement].style.opacity = "1";
-        setTimeout(() => (allBoxes[arrayElement].style.opacity = ".5"), 500);
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
       },
       1000
     );
@@ -269,6 +287,7 @@ function round1() {
   setTimeout(() => {
     setRoundText();
     setScore();
+    setHighscore();
   }, 10500);
 }
 
@@ -282,7 +301,10 @@ function round2() {
       computerSequence,
       function (arrayElement) {
         allBoxes[arrayElement].style.opacity = "1";
-        setTimeout(() => (allBoxes[arrayElement].style.opacity = ".5"), 500);
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
       },
       1000
     );
@@ -296,6 +318,7 @@ function round2() {
   setTimeout(() => {
     setRoundText();
     setScore();
+    setHighscore();
   }, 12190);
 }
 
@@ -309,7 +332,10 @@ function round3() {
       computerSequence,
       function (arrayElement) {
         allBoxes[arrayElement].style.opacity = "1";
-        setTimeout(() => (allBoxes[arrayElement].style.opacity = ".5"), 500);
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
       },
       1000
     );
@@ -322,6 +348,7 @@ function round3() {
   setTimeout(() => {
     setRoundText();
     setScore();
+    setHighscore();
   }, 16000);
 }
 
@@ -335,7 +362,10 @@ function round4() {
       computerSequence,
       function (arrayElement) {
         allBoxes[arrayElement].style.opacity = "1";
-        setTimeout(() => (allBoxes[arrayElement].style.opacity = ".5"), 500);
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
       },
       1000
     );
@@ -348,6 +378,7 @@ function round4() {
   setTimeout(() => {
     setRoundText();
     setScore();
+    setHighscore();
   }, 17500);
 }
 
@@ -361,7 +392,10 @@ function round5() {
       computerSequence,
       function (arrayElement) {
         allBoxes[arrayElement].style.opacity = "1";
-        setTimeout(() => (allBoxes[arrayElement].style.opacity = ".5"), 500);
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
       },
       1000
     );
@@ -374,7 +408,158 @@ function round5() {
   setTimeout(() => {
     setRoundText();
     setScore();
+    setHighscore();
   }, 19000);
+}
+
+function round6() {
+  userSequence = [];
+  computerSequenceGlobal = [];
+  const computerSequence = sequenceGenerator(8);
+
+  setTimeout(() => {
+    loopThroughArray(
+      computerSequence,
+      function (arrayElement) {
+        allBoxes[arrayElement].style.opacity = "1";
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
+      },
+      1000
+    );
+  }, 2500);
+
+  setTimeout(() => {
+    userSequenceChecker(6, computerSequenceGlobal);
+  }, 10500);
+
+  setTimeout(() => {
+    setRoundText();
+    setScore();
+    setHighscore();
+  }, 20500);
+}
+
+function round7() {
+  userSequence = [];
+  computerSequenceGlobal = [];
+  const computerSequence = sequenceGenerator(9);
+
+  setTimeout(() => {
+    loopThroughArray(
+      computerSequence,
+      function (arrayElement) {
+        allBoxes[arrayElement].style.opacity = "1";
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
+      },
+      1000
+    );
+  }, 2500);
+
+  setTimeout(() => {
+    userSequenceChecker(7, computerSequenceGlobal);
+  }, 12000);
+
+  setTimeout(() => {
+    setRoundText();
+    setScore();
+    setHighscore();
+  }, 23000);
+}
+
+function round8() {
+  userSequence = [];
+  computerSequenceGlobal = [];
+  const computerSequence = sequenceGenerator(9);
+
+  setTimeout(() => {
+    loopThroughArray(
+      computerSequence,
+      function (arrayElement) {
+        allBoxes[arrayElement].style.opacity = "1";
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
+      },
+      1000
+    );
+  }, 2500);
+
+  setTimeout(() => {
+    userSequenceChecker(8, computerSequenceGlobal);
+  }, 13500);
+
+  setTimeout(() => {
+    setRoundText();
+    setScore();
+    setHighscore();
+  }, 24500);
+}
+
+function round9() {
+  userSequence = [];
+  computerSequenceGlobal = [];
+  const computerSequence = sequenceGenerator(10);
+
+  setTimeout(() => {
+    loopThroughArray(
+      computerSequence,
+      function (arrayElement) {
+        allBoxes[arrayElement].style.opacity = "1";
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
+      },
+      1000
+    );
+  }, 2500);
+
+  setTimeout(() => {
+    userSequenceChecker(9, computerSequenceGlobal);
+  }, 15000);
+
+  setTimeout(() => {
+    setRoundText();
+    setScore();
+    setHighscore();
+  }, 26000);
+}
+
+function round10() {
+  userSequence = [];
+  computerSequenceGlobal = [];
+  const computerSequence = sequenceGenerator(11);
+
+  setTimeout(() => {
+    loopThroughArray(
+      computerSequence,
+      function (arrayElement) {
+        allBoxes[arrayElement].style.opacity = "1";
+        setTimeout(
+          () => (allBoxes[arrayElement].style.opacity = dimOpacity),
+          500
+        );
+      },
+      1000
+    );
+  }, 2500);
+
+  setTimeout(() => {
+    userSequenceChecker(10, computerSequenceGlobal);
+  }, 16500);
+
+  setTimeout(() => {
+    setRoundText();
+    setScore();
+    setHighscore();
+  }, 27500);
 }
 
 // add a sound everytime the current box is highlighted (when opacity is set to one)
@@ -383,9 +568,20 @@ startBTN.addEventListener("click", function () {
   resetGame();
   gameInPlay = true;
   if (gameInPlay === true) {
+    // set to round one after testing
     round1();
   }
 });
 userSequenceRecorder();
+
+document.addEventListener("keyup", function (event) {
+  if (gameInPlay === false && event.key === "s") {
+    resetGame();
+    gameInPlay = true;
+    if (gameInPlay === true) {
+      round1();
+    }
+  }
+});
 
 resetBTN.addEventListener("click", resetGame);
