@@ -8,44 +8,40 @@
     <title>Memory game</title>
   </head>
   <body id="body">
-    <header>
-      <div id="gameStats">
-        <div id="highscore_container">
-          <h1>Highscore: <span id="highscore">0</span></h1>
-        </div>
-        <div id="score_container">
-          <h1>Score: <span id="score">0</span></h1>
-        </div>
-
-        <div id="round_container">
-          <h1>Round: <span id="round">1</span></h1>
-        </div>
-      </div>
-    </header>
     <main>
-      <div id="game_container">
-        <div id="countdown_container">
-          <h1 id="countdown">?</h1>
+      <div class="main_container">
+        <div id="gameStats">
+          <div id="highscore_container">
+            <h1>Highscore: <span id="highscore">0</span></h1>
+          </div>
+          <div id="score_container">
+            <h1>Score: <span id="score">0</span></h1>
+          </div>
+
+          <div id="round_container">
+            <h1>Round: <span id="round">1</span></h1>
+          </div>
         </div>
-        <div id="game_buttons">
-          <div class="box box-0">Y</div>
-          <div class="box box-1">B</div>
-          <div class="box box-2">X</div>
-          <div class="box box-3">A</div>
-        </div>
-        <div id="game_controls">
-          <ul>
-            <li id="start">Start</li>
-            <li id="reset">Reset</li>
-          </ul>
+        <div id="game_container">
+          <div id="countdown_container">
+            <span id="time_label">Time</span>
+            <h1 id="countdown">?</h1>
+          </div>
+          <div id="game_buttons">
+            <div class="box box-0">Y</div>
+            <div class="box box-1">B</div>
+            <div class="box box-2">X</div>
+            <div class="box box-3">A</div>
+          </div>
+          <div id="game_controls">
+            <ul>
+              <li id="start">Start</li>
+              <li id="reset">Reset</li>
+            </ul>
+          </div>
         </div>
       </div>
     </main>
-    <footer>
-      <div id="credit">
-        <h6>Built by Rafael Ruiz</h6>
-      </div>
-    </footer>
     <script src="/memory.js"></script>
   </body>
 </html>

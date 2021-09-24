@@ -28,6 +28,7 @@ let score = 0;
 // reset user sequence after each round
 let userSequence = [];
 let computerSequenceGlobal = [];
+let countdown;
 
 setRoundText();
 setScore();
@@ -138,7 +139,10 @@ function losingDisplay() {
   countdownEl.textContent = "You Lose";
 }
 function resetGame() {
-  gameInPlay = true;
+  gameInPlay = false;
+  clearInterval();
+  clearInterval(countdown);
+  clearTimeout();
 
   userSequence = [];
   computerSequenceGlobal = [];
@@ -149,7 +153,7 @@ function resetGame() {
   scoreEl.textContent = "0";
   score = 0;
 
-  bodyEl.style.background = "linear-gradient(90deg, #e67e22, #f1c40f)";
+  bodyEl.style.background = "black";
   countdownEl.textContent = "?";
   box1.style.backgroundColor = "yellow";
   box2.style.backgroundColor = "red";
@@ -163,7 +167,7 @@ function resetGame() {
 function countdownTimer(round) {
   if (round <= 2) {
     let timeLeft = 5;
-    const contdown = setInterval(() => {
+    countdown = setInterval(() => {
       if (timeLeft < 0) {
         clearInterval(countdown);
       } else {
@@ -175,7 +179,7 @@ function countdownTimer(round) {
   }
   if (round <= 5 && round > 2) {
     let timeLeft = 8;
-    const contdown = setInterval(() => {
+    countdown = setInterval(() => {
       if (timeLeft < 0) {
         clearInterval(countdown);
       } else {
@@ -187,7 +191,7 @@ function countdownTimer(round) {
   }
   if (round <= 7 && round > 5) {
     let timeLeft = 8;
-    const contdown = setInterval(() => {
+    countdown = setInterval(() => {
       if (timeLeft < 0) {
         clearInterval(countdown);
       } else {
@@ -199,7 +203,7 @@ function countdownTimer(round) {
   }
   if (round <= 10 && round > 7) {
     let timeLeft = 10;
-    const contdown = setInterval(() => {
+    countdown = setInterval(() => {
       if (timeLeft < 0) {
         clearInterval(countdown);
       } else {
@@ -565,6 +569,7 @@ function round10() {
 // add a sound everytime the current box is highlighted (when opacity is set to one)
 // event listeners --------------------------------------
 startBTN.addEventListener("click", function () {
+  if (gameInPlay === true) return -1;
   resetGame();
   gameInPlay = true;
   if (gameInPlay === true) {

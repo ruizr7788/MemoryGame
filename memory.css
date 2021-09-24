@@ -1,5 +1,5 @@
 :root {
-  --transition-BG-color: all 0.3s ease;
+  --transition-BG-color: all 0.1s ease;
   --main-color: #ecf0f1;
   --secondary-color: #34495e;
 }
@@ -9,23 +9,32 @@
 }
 
 html {
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin: 0;
   padding: 0;
 }
 
 body {
-  background: linear-gradient(90deg, #e67e22, #f1c40f);
+  background-color: #333;
+  transition: background 0.9s ease-in-out;
+}
+
+#body {
+  transition: background 0.9s ease-in-out;
 }
 
 #gameStats {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   background-color: #2c3e50;
   padding: 2em 1em;
-  margin: 0;
-  width: 700px;
-  margin: auto;
+  width: 300px;
+  font-size: small;
+  border: 1px solid black;
+}
+#time_label {
+  color: var(--main-color);
 }
 #highscore_container h1 {
   color: var(--main-color);
@@ -39,11 +48,10 @@ body {
 }
 
 #game_container {
-  border-top: 1px solid#bdc3c7;
+  border: 1px solid black;
   background-color: #2c3e50;
   max-width: fit-content;
   text-align: center;
-  margin: auto;
   padding: 2em;
 }
 #countdown_container h1 {
@@ -55,7 +63,6 @@ body {
   column-gap: 10px;
   row-gap: 10px;
   padding: 5em 5em;
-  transform: rotate(47deg);
 }
 
 #game_buttons .box {
@@ -63,13 +70,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* color: #fff; */
   color: var(--secondary-color);
   font-size: x-large;
   font-weight: bold;
   cursor: pointer;
-  border-radius: 50%;
-
   width: 150px;
   height: 150px;
 }
@@ -147,4 +151,15 @@ body {
 }
 #credit h6 {
   color: #fff;
+}
+
+.main_container {
+  display: flex;
+  margin: 0;
+  width: fit-content;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
